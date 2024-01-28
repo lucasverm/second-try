@@ -1,4 +1,105 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$groen-palette: (
+  50: #e6f5e5,
+  100: #c4e6bf,
+  200: #9dd695,
+  300: #73c769,
+  400: #50bb47,
+  500: #27af1d,
+  600: #1aa012,
+  700: #008e00,
+  800: #007d00,
+  900: #007d00,
+  A100: #daecc1,
+  A200: #c0df98,
+  A400: #93c84b,
+  A700: #5b9b11,
+  contrast: (50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: white,
+    A700: white,
+  )
+);
+$paars-palette: (
+  50: #f4e5f5,
+  100: #e4bee7,
+  200: #d392d7,
+  300: #c166c7,
+  400: #b343bb,
+  500: #a51daf,
+  600: #971aa9,
+  700: #8415a2,
+  800: #73119a,
+  900: #54098d,
+  A100: #cdc3ed,
+  A200: #ab9be2,
+  A400: #6e55ce,
+  A700: #322cb7,
+  contrast: (50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: rgba(black, 0.87),
+    A200: rgba(black, 0.87),
+    A400: rgba(black, 0.87),
+    A700: white,
+  )
+);
+$rood-palette: (
+  50: #ffebef,
+  100: #ffcdc5,
+  200: #f0999f,
+  300: #e77179,
+  400: #f24e58,
+  500: #f83a40,
+  600: #e9313e,
+  700: #d72638,
+  800: #ca1e30,
+  900: #bb0d24,
+  contrast: (50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+  )
+);
+$lucas-primary: mat.define-palette($groen-palette, 700, 300, 900);
+$lucas-accent: mat.define-palette($paars-palette, 300, 100, 500);
+$lucas-warn: mat.define-palette($rood-palette, 700);
+
+$lucas-theme: mat.define-light-theme((color: (primary: $lucas-primary,
+        accent: $lucas-accent,
+        warn: $lucas-warn,
+      )));
+
+@include mat.all-component-themes($lucas-theme);
+
+
+
 html,
 body {
   height: 100%;
@@ -7,4 +108,8 @@ body {
 body {
   margin: 0;
   font-family: Raleway, "Helvetica Neue", sans-serif;
+}
+
+.d-flex {
+  display: flex;
 }

@@ -9,16 +9,19 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 @Component({
   selector: 'st-nav',
   standalone: true,
-  imports: [MatToolbarModule, MatButtonModule, MatIconModule, MatSidenavModule, MatListModule],
+  imports: [
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatListModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss'
 })
 export class NavComponent {
   mobileQuery: MediaQueryList;
 
-  fillerNav = Array.from({ length: 50 }, (_, i) => `Nav Item ${i + 1}`);
-
-  fillerContent = "Lorem ipsum dolor sit amet, consectetur";
+  fillerNav = Array.from({ length: 5 }, (_, i) => `Nav Item ${i + 1}`);
 
   private _mobileQueryListener: () => void;
 

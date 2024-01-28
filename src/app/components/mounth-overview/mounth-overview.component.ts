@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatTabsModule } from '@angular/material/tabs';
 import { ActivatedRoute } from '@angular/router';
 import { tap } from 'rxjs';
 import { MounthOverview } from '../../models/mounth-overview';
@@ -14,8 +13,7 @@ import { FinanceService } from '../../services/user.service';
   imports: [
     MatIconModule,
     MatButtonModule,
-    MatDividerModule,
-    MatTooltipModule
+    MatTabsModule
   ],
   templateUrl: './mounth-overview.component.html',
   styleUrl: './mounth-overview.component.scss'

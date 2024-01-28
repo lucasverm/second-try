@@ -1,41 +1,49 @@
 import { Injectable } from '@angular/core';
+import { BudgetPost } from '../models/budget-post';
+import { IncomeSource } from '../models/income-source';
+import { Transaction } from '../models/transaction';
+import { MounthOverview } from '../models/mounth-overview';
 import { Observable, of } from 'rxjs';
-import { Location } from '../models/location';
-import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class FinanceService {
 
-  constructor() { }
+  private budgetPostHuur: BudgetPost = {
+    id: 1,
+    name: "Huur",
+    category: "Sparen",
+    amount: 417,
+  } as BudgetPost
 
-  public getUser(): Observable<User> {
-    const user = {
-      id: 0,
-      name: "Lucas",
-      lastName: "Vermeulen",
-      age: 25,
-      birthDay: new Date(),
-      description: "Ik ben Lucas. Ik woon in Gent, studeerde informatica en werk als IT consultant. Ik ben imker en hou van kiten op de noordzee.",
-      profilePicture: "../../assets/example_data/profilePicture.jpeg",
-      pictures: ["../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg",
-        "../../assets/example_data/profilePicture.jpeg"],
-      quote: "Elke dag kiten, elke dag gelukkig!",
-      location: { long: 51.041462413566286, lat: 3.7301611332870936 } as Location,
-      idealDateBars: ["Ventura", "kleine kunst"],
-      idealDateRestaurant: ["Golden gai", "Publiek", "Arroy arroy"],
-      idealFirstDate: "Een rondleiding in mijn bijentuin",
-      email: "lucasvermeulen@gmail.com"
-    } as User;
-    return of(user);
+  private incomeSourceLoon: IncomeSource = {
+    id: 1,
+    name: "Loon",
+    amount: 2150
+  } as IncomeSource
+
+  private transaction: Transaction = {
+    id: 1,
+    name: "Bakker",
+    date: new Date(),
+    category: "Eten",
+    amount: 4.4,
+  } as Transaction
+
+  private mounthOverview: MounthOverview = {
+    id: 1,
+    date: new Date(),
+    mounthIncome: [this.incomeSourceLoon],
+    mounthExpenses: [this.transaction],
+    budget: [this.budgetPostHuur]
   }
+  
+
+  constructor() {}
+
+  public getMounthOverview(id: Number): Observable<MounthOverview> {
+    return of(this.mounthOverview);
+  }
+
 }

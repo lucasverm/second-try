@@ -1,6 +1,0 @@
-<div class="board" cdkDropListGroup>
-  <div class="cell" *ngFor="let cell of board; let i = index" cdkDropList (cdkDropListDropped)="drop($event)"
-    [cdkDropListData]="i" [cdkDropListEnterPredicate]="enterPredicate">
-    <img cdkDrag src="../../assets/no-profile-picture.png" width="100px" height="100px" *ngIf="cell === 1" />
-  </div>
-</div>

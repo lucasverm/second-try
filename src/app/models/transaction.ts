@@ -3,5 +3,5 @@ export interface Transaction {
   name: String;
   date: Date;
   category: String;
-  amount: number;
+  priceInEuro: number;
 }

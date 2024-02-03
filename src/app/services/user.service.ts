@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { BudgetPost } from '../models/budget-post';
 import { IncomeSource } from '../models/income-source';
-import { Transaction } from '../models/transaction';
 import { MounthOverview } from '../models/mounth-overview';
-import { Observable, of } from 'rxjs';
+import { Transaction } from '../models/transaction';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class FinanceService {
     name: "Bakker",
     date: new Date(),
     category: "Eten",
-    amount: 4.4,
+    priceInEuro: 4.4,
   } as Transaction
 
   private mounthOverview: MounthOverview = {
@@ -38,9 +38,9 @@ export class FinanceService {
     mounthExpenses: [this.transaction],
     budget: [this.budgetPostHuur]
   }
-  
 
-  constructor() {}
+
+  constructor() { }
 
   public getMounthOverview(id: Number): Observable<MounthOverview> {
     return of(this.mounthOverview);

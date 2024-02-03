@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Transaction } from '../../models/transaction';
 import { TransactionService } from '../../services/transaction.service';
-import { MatButton, MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'st-transactions-overview',
   standalone: true,
-  imports: [MatTableModule, CommonModule, MatButtonModule, MatIconModule],
+  imports: [MatTableModule, CommonModule, MatButtonModule, MatIconModule, MatCardModule],
   templateUrl: './transactions-overview.component.html',
   styleUrl: './transactions-overview.component.scss'
 })

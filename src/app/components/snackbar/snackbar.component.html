@@ -1,0 +1,9 @@
+<span matSnackBarLabel class="tw-flex tw-gap-2 tw-items-stretch tw-mt-2.5">
+  @if(data.type === 'success'){
+  <mat-icon color="primary">check</mat-icon>
+  }
+  @else if(data.type === 'error'){
+  <mat-icon color="warn">close</mat-icon>
+  }
+  <p class="tw-pt-0.5">{{data.message}}</p>
+</span>

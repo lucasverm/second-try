@@ -8,6 +8,7 @@ import {
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { Transaction } from '../../../models/transaction';
+import { NotificationService } from '../../../services/notification.service';
 import { TransactionService } from '../../../services/transaction.service';
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 @Component({
@@ -27,7 +28,8 @@ export class TransactionsOverviewComponent implements OnInit {
 
   constructor(
     private transactionService: TransactionService,
-    public dialog: MatDialog) {
+    public dialog: MatDialog,
+    private notificationService: NotificationService) {
 
   }
 
@@ -45,15 +47,16 @@ export class TransactionsOverviewComponent implements OnInit {
   openDialog(transaction: Transaction): void {
     const dialogRef = this.dialog.open(EditDialogComponent, {
       data: { ...transaction } as Transaction,
-      height: '50%',
-      width: '40%'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      const index = this.transactions.findIndex((transaction) => transaction.id === result.id);
-      console.log(index);
-      this.transactions[index] = result;
-      console.log(result)
+    dialogRef.afterClosed().subscribe({
+      next: value => {
+        if (value !== undefined) {
+          this.notificationService.success('Transaction updated!')
+        } else {
+          this.notificationService.error('Transaction update failed!')
+        }
+      }
     });
   }
 }

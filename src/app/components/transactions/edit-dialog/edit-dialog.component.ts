@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA, MatDialogActions, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,8 +26,7 @@ import { Transaction } from '../../../models/transaction';
     MatNativeDateModule,
     MatDatepickerModule,
   ],
-  providers: [
-  ],
+  providers: [provideNativeDateAdapter()],
 
 })
 export class EditDialogComponent {

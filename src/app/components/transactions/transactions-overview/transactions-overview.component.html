@@ -1,6 +1,11 @@
 <mat-card class="tw-m-4">
   <mat-card-content>
-    <h1>Transactions</h1>
+    <div class="tw-flex tw-justify-between">
+      <h1>Transactions</h1>
+      <button mat-mini-fab color="white">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
     <table mat-table [dataSource]="transactions" class="tw-p-3">
       <ng-container matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef>Date</th>
@@ -22,7 +27,7 @@
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <td mat-cell *matCellDef="let element">
           <div class="tw-flex tw-gap-1.5">
-            <button mat-mini-fab color="white">
+            <button mat-mini-fab color="white" (click)="openDialog(element)">
               <mat-icon>mode_edit</mat-icon>
             </button>
             <button mat-mini-fab color="white">

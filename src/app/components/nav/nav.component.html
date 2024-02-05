@@ -1,21 +1,13 @@
 <div class="container" [class.is-mobile]="mobileQuery.matches">
   <mat-toolbar color="primary" class="toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
-    <h1 class="app-name">Second try</h1>
+    <h1 class="app-name">Budget</h1>
     <span class="spacer"></span>
-    <button mat-icon-button class="icon favorite-icon" aria-label="Example icon-button with heart icon">
-      <mat-icon>mail_outline</mat-icon>
-    </button>
-    <button mat-icon-button class="icon" aria-label="Example icon-button with share icon">
-      <mat-icon>account_box</mat-icon>
-    </button>
   </mat-toolbar>
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="'over'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
       <mat-nav-list>
-        @for (nav of fillerNav; track nav) {
-        <a mat-list-item routerLink=".">{{nav}}</a>
-        }
+        <a mat-list-item routerLink="/transactions" (click)="snav.toggle()">transactions</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

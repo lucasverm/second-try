@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'st-nav',
@@ -14,14 +15,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatIconModule,
     MatSidenavModule,
-    MatListModule],
+    MatListModule,
+    RouterModule],
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.scss'
 })
 export class NavComponent {
   mobileQuery: MediaQueryList;
-
-  fillerNav = Array.from({ length: 5 }, (_, i) => `Nav Item ${i + 1}`);
 
   private _mobileQueryListener: () => void;
 

@@ -7,7 +7,7 @@
     </mat-form-field>
     <p>Date:</p>
     <mat-form-field class="tw-w-full">
-      <input matInput [matDatepicker]="picker" [ngModel]="transaction.date">
+      <input matInput [matDatepicker]="picker" [(ngModel)]="transaction.date">
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

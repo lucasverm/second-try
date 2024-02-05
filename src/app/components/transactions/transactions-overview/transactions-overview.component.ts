@@ -44,19 +44,45 @@ export class TransactionsOverviewComponent implements OnInit {
     })
   }
 
-  openDialog(transaction: Transaction): void {
-    const dialogRef = this.dialog.open(EditDialogComponent, {
-      data: { ...transaction } as Transaction,
-    });
+  public addTransaction(): void {
+    let transaction: Transaction = {} as Transaction;
+    this.openDialog(transaction);
+  }
 
+  public editTransaction(transaction: Transaction): void {
+    let transactionToEdit = { ...transaction }
+    this.openDialog(transactionToEdit);
+  }
+
+  public deleteTransaction(transaction: Transaction): void {
+    this.notificationService.confirmation("Are you sure?", () => {
+      this.transactions = this.transactions.filter(obj => obj !== transaction);
+    }, "Delete transaction?", () => { })
+  }
+
+  private openDialog(transaction: Transaction): void {
+    const dialogRef = this.dialog.open(EditDialogComponent, {
+      data: transaction as Transaction,
+    });
     dialogRef.afterClosed().subscribe({
       next: value => {
         if (value !== undefined) {
+          this.addOrUpdatetransaction(value);
           this.notificationService.success('Transaction updated!')
         } else {
           this.notificationService.error('Transaction update failed!')
         }
       }
     });
+  }
+
+  private addOrUpdatetransaction(changedTransaction: Transaction): void {
+    if (changedTransaction.id === undefined) {
+      this.transactions = [...this.transactions, changedTransaction]
+    } else {
+      let indexToUpdate = this.transactions.findIndex((transaction: Transaction) => transaction.id === changedTransaction.id);
+      this.transactions[indexToUpdate] = changedTransaction;
+      this.transactions = [...this.transactions]
+    }
   }
 }

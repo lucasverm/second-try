@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, Inject, Injectable } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
   MatDialogRef
 } from '@angular/material/dialog';
+import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackbarComponent } from '../components/snackbar/snackbar.component';
 
@@ -133,19 +136,24 @@ export interface DialogData {
 
 @Component({
   template: `
+  <div class="tw-m-4">
     <h1 mat-dialog-title>{{ data.title }}</h1>
     <div mat-dialog-content>
      {{data.message}}
     </div>
-    <div mat-dialog-actions>
-       <button mat-raised-button color="warn" (click)="onNoClick()">
-        Cancel
-      </button>
-      <button mat-raised-button color="primary" (click)="onYesClick()" cdkFocusInitial>
-        Ok
-      </button>
-    </div>
-  `
+
+    <div mat-dialog-actions class="tw-flex tw-gap-3 tw-mt-4">
+    <button mat-raised-button (click)="onYesClick()" color="primary">
+      <mat-icon>check</mat-icon>Yes</button>
+    <button mat-raised-button (click)="onNoClick()" color="warn">
+      <mat-icon>cancel</mat-icon>No</button>
+  </div>
+  </div>
+  `,
+  standalone: true,
+  imports: [
+    CommonModule, MatButtonModule, MatIconModule
+  ],
 })
 export class ConfirmationDialog {
   constructor(

@@ -1,11 +1,7 @@
 .scroll-wrapper {
-  overflow: hidden !important;
-  display: flex !important;
-  flex-direction: column !important;
+  overflow: auto;
 
   .scroll {
-    display: block;
-    overflow-x: auto;
     white-space: nowrap;
   }
 }

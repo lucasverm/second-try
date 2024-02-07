@@ -11,7 +11,8 @@ export class TransactionService {
 
   private transaction1: Transaction = {
     id: 1,
-    name: "Bakker",
+    //name: "BakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakkerBakker",
+    name: "Winkel",
     date: new Date(),
     category: "Eten",
     priceInEuro: 4.4,

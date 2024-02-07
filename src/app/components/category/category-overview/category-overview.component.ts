@@ -1,3 +1,4 @@
+import { NestedTreeControl } from '@angular/cdk/tree';
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -5,6 +6,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatTreeModule, MatTreeNestedDataSource } from '@angular/material/tree';
 import { Category } from '../../../models/category';
 import { CategorieService } from '../../../services/category.service';
 import { NotificationService } from '../../../services/notification.service';
@@ -15,7 +17,8 @@ import { EditDialogComponent } from '../../transactions/edit-dialog/edit-dialog.
   standalone: true,
   imports: [
     MatTableModule,
-    CommonModule, MatButtonModule, MatIconModule, MatCardModule
+    CommonModule, MatCardModule,
+    MatTreeModule, MatButtonModule, MatIconModule
   ],
   templateUrl: './category-overview.component.html',
   styleUrl: './category-overview.component.scss'
@@ -29,7 +32,31 @@ export class CategoryOverviewComponent implements OnInit {
     private categorieservice: CategorieService,
     public dialog: MatDialog,
     private notificationService: NotificationService) {
+    this.dataSource.data = [
+      {
+        name: 'Fruit',
+        children: [{ name: 'Apple' }, { name: 'Banana' }, { name: 'Fruit loops' }],
+      },
+      {
+        name: 'Vegetables',
+        children: [
+          {
+            name: 'Green',
+            children: [{ name: 'Broccoli' }, { name: 'Brussels sprouts' }],
+          },
+          {
+            name: 'Orange',
+            children: [{ name: 'Pumpkins' }, { name: 'Carrots' }],
+          },
+        ],
+      },
+    ];
   }
+
+  treeControl = new NestedTreeControl<any>(node => node.children);
+  dataSource = new MatTreeNestedDataSource<any>();
+
+  hasChild = (_: number, node: any) => !!node.children && node.children.length > 0;
 
   public ngOnInit(): void {
     this.categorieservice.getCategories().pipe().subscribe({
